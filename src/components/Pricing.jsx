@@ -15,6 +15,7 @@ const Pricing = () => {
             {pricing.map((price, index)=>(
                 <div key={index} className='bg-white text-gray-900 p-6 shadow-lg rounded-lg'>
                     <h3 className='text-xl font-semibold mb-2'>{price.service}</h3>
+                    <p className='text-lg font-bold'>{price.price}</p>
                 </div>
             ))}
         </div>
