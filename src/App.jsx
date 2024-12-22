@@ -6,6 +6,7 @@ import Pricing from './components/Pricing'
 import Testimonial from './components/Testimonial'
 import Workflow from './components/Workflow'
 import EncouragementPopup from './components/EncouragementPopup'
+import Location from './components/Location'
 
 function App () {
   return (
@@ -17,6 +18,7 @@ function App () {
       <Testimonial/>
       <Workflow />
       <EncouragementPopup/>
+      <Location />
     </div>
   )
 }
