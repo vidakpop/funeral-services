@@ -5,6 +5,7 @@ import FeatureSection from './components/FeatureSection'
 import Pricing from './components/Pricing'
 import Testimonial from './components/Testimonial'
 import Workflow from './components/Workflow'
+import EncouragementPopup from './components/EncouragementPopup'
 
 function App () {
   return (
@@ -15,6 +16,7 @@ function App () {
       <Pricing/>
       <Testimonial/>
       <Workflow />
+      <EncouragementPopup/>
     </div>
   )
 }
