@@ -9,7 +9,10 @@ const pricing=[
 ]
 const Pricing = () => {
   return (
-    <div>Pricing</div>
+    <section id='pricing' className='py-16 bg-gradient-to-r from-purple-700 to-blue-700 text-white'>
+        <h2 className='text-center text-3xl font-bold mb-10'>Pricing</h2>
+
+    </section>
   )
 }
 
