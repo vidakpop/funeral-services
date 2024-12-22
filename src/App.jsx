@@ -6,7 +6,7 @@ function App () {
   return (
     <div className='bg-gray-50 text-gray-900'>
       <Navbar />
-      <HeroSection
+      <HeroSection />
     </div>
   )
 }
