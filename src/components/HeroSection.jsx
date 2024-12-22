@@ -1,12 +1,14 @@
 import React from 'react'
-
+import video1 from '../assets/hero.mp4'
 const HeroSection = () => {
   return (
     <div className='relative h-screen'>
         <video className='absolute inset-0 w-full h-full object-cover'
-        src="/assets/hero.mp4" 
+        
         autoPlay muted loop
         >
+            <source src={video1} type="video/mp4" />
+            Your browser does not support the video tag.
 
         </video>
         <div className='absolute inset-0 bg-black bg-opacity-50'></div>
