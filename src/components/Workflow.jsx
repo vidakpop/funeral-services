@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { CheckCircle2 } from 'lucide-react'
 
 const Workflow = () => {
     const steps =[
@@ -11,17 +11,19 @@ const Workflow = () => {
   return (
     <section id='workflow' className='py-16 bg-gradient-to-r from-blue-50 to-purple-50'>
        <h2 className='text-center text-3xl font-bold text-gray-900 mb-10'>How it works</h2>  
-        <div className='container mx-auto flex flex-col items-cemter space-y-6 px-4'>
-            {steps.map((step, index)=>(
-                <div
-                key={index}
-                className="bg-white text-gray-900 p-6 shadow-lg rounded-lg w-full md:w-3/4 text-center"
-              >
-                <p className="text-lg font-semibold">{index + 1}. {step}</p>
-              </div>
-            ))}
-
-        </div>
+       <div className='pt-12 w-full lg:w-1/2'>
+                {steps.map((step,index)=>(
+                    <div key={index} className='flex mb-12'>
+                        <div className='text-green-400 mx-6 bg-neutral-900 h-10 w-10 p-2 justify-center items-center rounded-full'>
+                            <CheckCircle2/>
+                        </div>
+                        <div>
+                            <h5 className='mt-1 mb-2 text-xl'>{index + 1}. {step}</h5>
+                            
+                        </div>
+                    </div>
+                ))}
+            </div>
 
     </section>
   )
