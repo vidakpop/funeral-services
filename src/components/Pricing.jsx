@@ -1,27 +1,87 @@
-import React from 'react'
+import React from 'react';
 
-const pricing=[
-    { service: "Transport", price: "KES 10,000" },
-    { service: "Casket", price: "KES 50,000" },
-    { service: "Lowering Gear", price: "KES 15,000" },
-    { service: "Gazebo", price: "KES 20,000" },
-    { service: "Red/Green Carpet", price: "KES 5,000" },
-]
+const pricing = [
+  { service: "Transport", contact: "+254712345678" },
+  { service: "Casket", contact: "+254712345678" },
+  { service: "Lowering Gear", contact: "+254712345678" },
+  { service: "Gazebo", contact: "+254712345678" },
+  { service: "Red/Green Carpet", contact: "+254712345678" },
+];
+
 const Pricing = () => {
   return (
-    <section id='pricing' className='py-16 bg-gradient-to-r from-purple-700 to-blue-700 text-white'>
-        <h2 className='text-center text-3xl font-bold mb-10'>Pricing</h2>
-        <div className='container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4'>
-            {pricing.map((price, index)=>(
-                <div key={index} className='bg-white text-gray-900 p-6 shadow-lg rounded-lg'>
-                    <h3 className='text-xl font-semibold mb-2'>{price.service}</h3>
-                    <p className='text-lg font-bold'>{price.price}</p>
+    <section
+      id='pricing'
+      className='py-16 bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white relative overflow-hidden'
+    >
+      {/* Background animations */}
+      <div className='absolute inset-0 pointer-events-none'>
+        <div className='absolute bg-blue-700 opacity-20 w-96 h-96 rounded-full blur-3xl top-10 left-20 animate-pulse'></div>
+        <div className='absolute bg-purple-700 opacity-20 w-72 h-72 rounded-full blur-3xl bottom-20 right-40 animate-pulse'></div>
+      </div>
+
+      {/* Section Content */}
+      <div className='relative z-10'>
+        <h2 className='text-center text-4xl font-bold mb-12 uppercase tracking-wide'>
+          <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500'>
+            Pricing & Negotiations
+          </span>
+        </h2>
+        <div className='container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6'>
+          {pricing.map((item, index) => (
+            <div
+              key={index}
+              className='relative bg-gray-800 p-6 shadow-lg rounded-lg overflow-hidden hover:scale-105 transform transition-all duration-700 group'
+            >
+              {/* Glowing border */}
+              <div className='absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-pink-500 transition-all duration-500'></div>
+
+              {/* Service */}
+              <h3 className='text-xl font-semibold mb-4 text-white group-hover:text-blue-400 transition-all duration-500'>
+                {item.service}
+              </h3>
+              
+              {/* Contact Options */}
+              <div className='flex flex-col items-center'>
+                <p className='text-gray-400 mb-4'>
+                  Pricing depends on location and is negotiable.
+                </p>
+                <div className='flex space-x-4'>
+                  {/* WhatsApp Button */}
+                  <a
+                    href={`https://wa.me/${item.contact.replace('+', '')}`}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex items-center px-4 py-2 bg-green-500 rounded-full shadow-md text-white font-semibold text-sm hover:bg-green-600 transform transition-all duration-300'
+                  >
+                    <img
+                      src='https://img.icons8.com/color/48/whatsapp.png'
+                      alt='WhatsApp'
+                      className='w-5 h-5 mr-2'
+                    />
+                    Chat on WhatsApp
+                  </a>
+
+                  {/* Call Button */}
+                  <a
+                    href={`tel:${item.contact}`}
+                    className='flex items-center px-4 py-2 bg-blue-500 rounded-full shadow-md text-white font-semibold text-sm hover:bg-blue-600 transform transition-all duration-300'
+                  >
+                    <img
+                      src='https://img.icons8.com/fluency/48/phone.png'
+                      alt='Phone'
+                      className='w-5 h-5 mr-2'
+                    />
+                    Call Now
+                  </a>
                 </div>
-            ))}
+              </div>
+            </div>
+          ))}
         </div>
-
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default Pricing
+export default Pricing;
