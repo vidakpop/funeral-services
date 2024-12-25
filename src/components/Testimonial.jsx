@@ -47,9 +47,9 @@ const Testimonial = () => {
         ))}
       </div>
 
-      {/* Subtle Rotating Animation */}
-      <div className="absolute w-96 h-96 bg-gradient-to-r from-purple-500 to-pink-500 opacity-10 rounded-full blur-2xl animate-spin-slow -top-10 -left-32"></div>
-      <div className="absolute w-96 h-96 bg-gradient-to-r from-blue-500 to-teal-500 opacity-10 rounded-full blur-2xl animate-spin-slow-reverse -bottom-10 -right-32"></div>
+      {/* Rotating Effects */}
+      <div className="absolute w-96 h-96 bg-gradient-to-r from-purple-500 to-pink-500 opacity-10 rounded-full blur-2xl animate-spin-5s -top-10 -left-32"></div>
+      <div className="absolute w-96 h-96 bg-gradient-to-r from-blue-500 to-teal-500 opacity-10 rounded-full blur-2xl animate-spin-5s-reverse -bottom-10 -right-32"></div>
     </section>
   );
 };
