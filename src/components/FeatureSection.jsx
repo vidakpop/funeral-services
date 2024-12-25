@@ -1,11 +1,11 @@
 import React from 'react';
 
 const features = [
-  { title: "Hearse", image: "/images/transport.jpg", description: "We provide reliable and respectful transport services for the deceased." },
-  { title: "Casket", image: "..l/assets/images/casket.jpeg", description: "Choose from a variety of high-quality caskets to honor your loved one." },
-  { title: "Lowering Gear", image: "/images/lowering_gear.jpeg", description: "Our lowering gear ensures a dignified and smooth burial process." },
-  { title: "Gazebo", image: "/images/gazebo.jpg", description: "We offer gazebo setups for outdoor services and gatherings." },
-  { title: "Red/Green Carpet", image: "/images/carpet.jpg", description: "Red and green carpets are available to enhance the service setting." },
+  { title: "Hearse", image: "../assets/images/transport.jpeg", description: "We provide reliable and respectful transport services for the deceased." },
+  { title: "Casket", image: "../assets/images/casket.jpeg", description: "Choose from a variety of high-quality caskets to honor your loved one." },
+  { title: "Lowering Gear", image: "../assets/images/lowering_gear.jpeg", description: "Our lowering gear ensures a dignified and smooth burial process." },
+  { title: "Gazebo", image: "../assets/images/gazebo.jpeg", description: "We offer gazebo setups for outdoor services and gatherings." },
+  { title: "Red/Green Carpet", image: "../assets/images/carpet.jpeg", description: "Red and green carpets are available to enhance the service setting." },
 ];
 
 const FeatureSection = () => {
