@@ -14,7 +14,7 @@ const Pricing = () => {
       id='pricing'
       className='py-16 bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white relative overflow-hidden'
     >
-      {/* Background animations */}
+      {/* Background Glow Effects */}
       <div className='absolute inset-0 pointer-events-none'>
         <div className='absolute bg-blue-700 opacity-20 w-96 h-96 rounded-full blur-3xl top-10 left-20 animate-pulse'></div>
         <div className='absolute bg-purple-700 opacity-20 w-72 h-72 rounded-full blur-3xl bottom-20 right-40 animate-pulse'></div>
@@ -31,28 +31,28 @@ const Pricing = () => {
           {pricing.map((item, index) => (
             <div
               key={index}
-              className='relative bg-gray-800 p-6 shadow-lg rounded-lg overflow-hidden hover:scale-105 transform transition-all duration-700 group'
+              className='relative bg-white bg-opacity-10 p-6 shadow-lg rounded-lg overflow-hidden hover:scale-105 transform transition-all duration-700 group'
             >
-              {/* Glowing border */}
-              <div className='absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-pink-500 transition-all duration-500'></div>
+              {/* Glassy Effect */}
+              <div className='absolute inset-0 bg-gradient-to-r from-purple-400 via-transparent to-blue-400 opacity-30 rounded-lg blur-xl'></div>
+              {/* Glowing Border */}
+              <div className='absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-purple-500 transition-all duration-500'></div>
 
-              {/* Service */}
-              <h3 className='text-xl font-semibold mb-4 text-white group-hover:text-blue-400 transition-all duration-500'>
-                {item.service}
-              </h3>
-              
-              {/* Contact Options */}
-              <div className='flex flex-col items-center'>
-                <p className='text-gray-400 mb-4'>
+              {/* Service Details */}
+              <div className='relative z-10 text-center'>
+                <h3 className='text-xl font-semibold mb-4 text-white group-hover:text-blue-400 transition-all duration-500'>
+                  {item.service}
+                </h3>
+                <p className='text-gray-300 mb-4'>
                   Pricing depends on location and is negotiable.
                 </p>
-                <div className='flex space-x-4'>
+                <div className='flex justify-center space-x-4'>
                   {/* WhatsApp Button */}
                   <a
                     href={`https://wa.me/${item.contact.replace('+', '')}`}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='flex items-center px-4 py-2 bg-green-500 rounded-full shadow-md text-white font-semibold text-sm hover:bg-green-600 transform transition-all duration-300'
+                    className='flex items-center px-4 py-2 bg-green-500 bg-opacity-80 rounded-full shadow-md text-white font-semibold text-sm hover:bg-green-600 transform transition-all duration-300'
                   >
                     <img
                       src='https://img.icons8.com/color/48/whatsapp.png'
@@ -65,7 +65,7 @@ const Pricing = () => {
                   {/* Call Button */}
                   <a
                     href={`tel:${item.contact}`}
-                    className='flex items-center px-4 py-2 bg-blue-500 rounded-full shadow-md text-white font-semibold text-sm hover:bg-blue-600 transform transition-all duration-300'
+                    className='flex items-center px-4 py-2 bg-blue-500 bg-opacity-80 rounded-full shadow-md text-white font-semibold text-sm hover:bg-blue-600 transform transition-all duration-300'
                   >
                     <img
                       src='https://img.icons8.com/fluency/48/phone.png'
