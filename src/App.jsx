@@ -16,8 +16,8 @@ function App () {
       <HeroSection />
       <FeatureSection />
       <Pricing/>
-      <Testimonial/>
       <Workflow />
+      <Testimonial/>
       <EncouragementPopup/>
       <Location />
       <Footer />
