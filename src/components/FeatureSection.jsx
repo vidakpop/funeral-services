@@ -1,11 +1,17 @@
 import React from 'react';
 
+import hearseImage from '../assets/images/hearse.jpeg';
+import casketImage from '../assets/images/casket.jpeg';
+import loweringGearImage from '../assets/images/lowering_gear.jpeg';
+import gazeboImage from '../assets/images/gazebo.jpeg';
+import carpetImage from '../assets/images/carpet.jpeg';
+
 const features = [
-  { title: "Hearse", image: "/src/assets/images/hearse.jpeg", description: "We provide reliable and respectful transport services for the deceased." },
-  { title: "Casket", image: "/src/assets/images/casket.jpeg", description: "Choose from a variety of high-quality caskets to honor your loved one." },
-  { title: "Lowering Gear", image: "/src/assets/images/lowering_gear.jpeg", description: "Our lowering gear ensures a dignified and smooth burial process." },
-  { title: "Gazebo", image: "/src/assets/images/gazebo.jpeg", description: "We offer gazebo setups for outdoor services and gatherings." },
-  { title: "Red/Green Carpet", image: "/src/assets/images/carpet.jpeg", description: "Red and green carpets are available to enhance the service setting." },
+  { title: "Hearse", image: hearseImage, description: "We provide reliable and respectful transport services for the deceased." },
+  { title: "Casket", image: casketImage, description: "Choose from a variety of high-quality caskets to honor your loved one." },
+  { title: "Lowering Gear", image: loweringGearImage, description: "Our lowering gear ensures a dignified and smooth burial process." },
+  { title: "Gazebo", image: gazeboImage, description: "We offer gazebo setups for outdoor services and gatherings." },
+  { title: "Red/Green Carpet", image: carpetImage, description: "Red and green carpets are available to enhance the service setting." },
 ];
 
 const FeatureSection = () => {
