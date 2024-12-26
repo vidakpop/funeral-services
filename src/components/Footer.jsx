@@ -25,7 +25,7 @@ const Footer = () => {
         {/* Contact Links */}
         <div className="flex justify-center space-x-6 mt-6">
           <a
-            href="https://wa.me/254700000000"
+            href="https://wa.me/254729489524"
             className="flex items-center space-x-2 text-yellow-300 hover:text-yellow-500 transition duration-300"
             target="_blank"
             rel="noopener noreferrer"
@@ -34,7 +34,7 @@ const Footer = () => {
             <span>WhatsApp</span>
           </a>
           <a
-            href="tel:+254700000000"
+            href="tel:+254797277111"
             className="flex items-center space-x-2 text-yellow-300 hover:text-yellow-500 transition duration-300"
           >
             <FaPhone size={24} />
@@ -64,7 +64,7 @@ const Footer = () => {
               <FaGithub size={32} />
             </a>
             <a
-              href="https://linkedin.com/in/vidakpop"
+              href="https://linkedin.com/in/davisngetich"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-yellow-300 transition duration-300"
@@ -72,7 +72,7 @@ const Footer = () => {
               <FaLinkedin size={32} />
             </a>
             <a
-              href="mailto:vidakpop@gmail.com"
+              href="mailto:cyberjiutsu@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-yellow-300 transition duration-300"
