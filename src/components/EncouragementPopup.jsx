@@ -29,22 +29,24 @@ const EncouragementPopup = () => {
       {showPopup && (
         <div className="popup-container">
           <div className="popup-content">
-            <div className="popup-header">
-              <h1 className="popup-title">Sending You Comfort</h1>
+            <div className="popup-video-container">
+              <video className="popup-video" autoPlay loop muted>
+                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
+              </video>
             </div>
-            <div className="popup-body">
-              <p className="popup-message">{message}</p>
-              <div className="popup-icons">
-                <i className="popup-icon">💫</i>
-                <i className="popup-icon">🌿</i>
+            <div className="popup-message-container">
+              <div className="popup-header">
+                <h1 className="popup-title">Sending You Comfort</h1>
               </div>
+              <div className="popup-body">
+                <p className="popup-message">{message}</p>
+                <div className="popup-icons">
+                  <i className="popup-icon">💫</i>
+                  <i className="popup-icon">🌿</i>
+                </div>
+              </div>
+              <button className="popup-close" onClick={() => setShowPopup(false)}>Close</button>
             </div>
-            <button className="popup-close" onClick={() => setShowPopup(false)}>Close</button>
-          </div>
-          <div className="popup-video-container">
-            <video className="popup-video" autoPlay loop muted>
-              <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
-            </video>
           </div>
         </div>
       )}
@@ -63,30 +65,9 @@ const EncouragementPopup = () => {
           animation: fadeIn 1s ease-out;
         }
 
-        .popup-video-container {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .popup-video {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          opacity: 0.5;
-          z-index: -1;
-        }
-
         .popup-content {
-          background: rgba(0, 0, 0, 0.6); /* Dark background to make text stand out */
+          position: relative;
+          background: rgba(0, 0, 0, 0.7); /* Dark background to make text stand out */
           padding: 2rem;
           border-radius: 15px;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -98,12 +79,31 @@ const EncouragementPopup = () => {
           animation: popupIn 1s ease-out;
         }
 
+        .popup-video-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: -1;
+        }
+
+        .popup-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.4;
+        }
+
+        .popup-message-container {
+          z-index: 1; /* Ensures the text and button are above the video */
+        }
+
         .popup-header h1 {
           color: white;
           font-size: 2rem;
           font-family: 'Roboto', sans-serif;
           margin-bottom: 1rem;
-          animation: slideIn 1.5s ease-out;
         }
 
         .popup-body {
@@ -121,7 +121,6 @@ const EncouragementPopup = () => {
         .popup-icons {
           font-size: 2rem;
           margin-top: 1rem;
-          animation: popIn 1s ease-out;
         }
 
         .popup-icon {
@@ -158,28 +157,6 @@ const EncouragementPopup = () => {
             transform: scale(0.9);
           }
           100% {
-            transform: scale(1);
-          }
-        }
-
-        @keyframes slideIn {
-          0% {
-            transform: translateY(-20px);
-            opacity: 0;
-          }
-          100% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-
-        @keyframes popIn {
-          0% {
-            opacity: 0;
-            transform: scale(0.8);
-          }
-          100% {
-            opacity: 1;
             transform: scale(1);
           }
         }
