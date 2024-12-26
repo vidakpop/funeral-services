@@ -6,8 +6,8 @@ const Footer = () => {
     <footer className="bg-black text-white py-16 relative overflow-hidden">
       {/* Background Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-96 h-96 rounded-full bg-yellow-400 opacity-20 blur-3xl top-0 left-20 animate-pulse"></div>
-        <div className="absolute w-80 h-80 rounded-full bg-yellow-400 opacity-20 blur-3xl bottom-10 right-10 animate-pulse"></div>
+        <div className="absolute w-96 h-96 rounded-full bg-purple-400 opacity-20 blur-3xl top-0 left-20 animate-pulse"></div>
+        <div className="absolute w-80 h-80  bg-gradient-to-r from-yellow-400 to-yellow-600 opacity-20 blur-3xl bottom-10 right-10 animate-pulse"></div>
       </div>
 
       {/* Footer Content */}
