@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { MessageCircle } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { MessageCircle } from "lucide-react";
 
 const testimonials = [
   { name: "John Doe", message: "They made everything so easy during our hard time." },
@@ -11,23 +11,43 @@ const testimonials = [
   { name: "David Davis", message: "They were very helpful and the service was perfect." },
 ];
 
-/*************  ✨ Codeium Command 🌟  *************/
 const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(1); // Number of testimonials to show per slide
 
   // Function to move to the next testimonial
   const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % Math.ceil(testimonials.length / itemsPerSlide));
   };
 
   // Set up the interval to change the testimonials every 5 seconds
   useEffect(() => {
     const interval = setInterval(nextTestimonial, 5000); // Change every 5 seconds
     return () => clearInterval(interval); // Clean up on unmount
+  }, [itemsPerSlide]);
+
+  // Adjust the number of items per slide based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsPerSlide(3); // Show 3 testimonials per slide on large screens
+      } else if (window.innerWidth >= 768) {
+        setItemsPerSlide(2); // Show 2 testimonials per slide on tablets
+      } else {
+        setItemsPerSlide(1); // Show 1 testimonial per slide on mobile
+      }
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize); // Listen for window resize
+    return () => window.removeEventListener("resize", handleResize); // Cleanup
   }, []);
 
   return (
-    <section id="testimonials" className="py-16 bg-gradient-to-br from-blue-900 via-purple-900 to-black relative overflow-hidden text-white">
+    <section
+      id="testimonials"
+      className="py-16 bg-gradient-to-br from-blue-900 via-purple-900 to-black relative overflow-hidden text-white"
+    >
       {/* Background Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bg-purple-500 opacity-20 w-80 h-80 rounded-full blur-3xl top-20 left-10 animate-pulse"></div>
@@ -49,16 +69,16 @@ const Testimonial = () => {
           className="flex transition-transform duration-500 ease-in-out"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
+            width: `${(100 * testimonials.length) / itemsPerSlide}%`,
           }}
         >
-          {/* Loop through testimonials and display 3 per slide */}
+          {/* Loop through testimonials and display based on itemsPerSlide */}
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="min-w-full px-6 mb-8 flex-shrink-0 bg-gradient-to-r from-gray-800 to-gray-900 p-8 rounded-3xl shadow-lg transform hover:scale-105 hover:rotate-1 hover:shadow-2xl transition-transform duration-500 group"
+              className={`min-w-[calc(100%/${itemsPerSlide})] px-6 mb-8 flex-shrink-0 bg-gradient-to-r from-gray-800 to-gray-900 p-8 rounded-3xl shadow-lg transform hover:scale-105 hover:rotate-1 hover:shadow-2xl transition-transform duration-500 group`}
             >
               <div className="flex justify-center mb-6">
-
                 <div className="p-4 bg-gradient-to-tr from-teal-500 via-purple-500 to-blue-500 rounded-full">
                   <MessageCircle className="text-white" size={32} />
                 </div>
