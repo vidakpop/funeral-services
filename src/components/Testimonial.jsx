@@ -1,61 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 
 const testimonials = [
-  { name: "John Doe", message: "They made everything so easy during our hard time." },
-  { name: "Jane Smith", message: "Exceptional service and care." },
-  { name: "Robert K.", message: "Highly recommended!" },
-  { name: "Emily Brown", message: "The team was great and the service was exceptional." },
-  { name: "Michael Johnson", message: "Best experience ever!" },
-  { name: "Sarah Wilson", message: "We love the service and the team worked hard to make it happen." },
-  { name: "David Davis", message: "They were very helpful and the service was perfect." },
+  { name: "Mwangi Wafula", message: "They made everything so easy during our hard time." },
+  { name: "Achieng Ochieng", message: "Exceptional service and care." },
+  { name: "Kiprotich Mutai", message: "Highly recommended!" },
+  { name: "Wanjiru Njenga", message: "The team was great and the service was exceptional." },
+  { name: "Omondi Onyango", message: "Best experience ever!" },
+  { name: "Njeri Kamau", message: "We love the service and the team worked hard to make it happen." },
+  { name: "Otieno Okello", message: "They were very helpful and the service was perfect." },
 ];
 
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * The Testimonial component displays a section of the website
- * with customer testimonials. The component uses the
- * `useState` and `useEffect` hooks to manage the state of
- * the testimonials and the number of items to show per slide.
- *
- * The component also uses the `useEffect` hook to set up
- * an interval that changes the testimonials every 5 seconds.
- *
- * The component also uses the `useEffect` hook to adjust the
- * number of items per slide based on the screen width.
- *
- * @returns The Testimonial component
- */
-/******  965ae424-1342-40b5-9abc-502b577e31db  *******/const Testimonial = () => {
+const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsPerSlide, setItemsPerSlide] = useState(1); // Adjusts based on screen size
+  const [itemsPerSlide, setItemsPerSlide] = useState(1);
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  // Change testimonials every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex + 1 >= Math.ceil(testimonials.length / itemsPerSlide) ? 0 : prevIndex + 1
-      );
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [itemsPerSlide]);
-
-  // Adjust items per slide based on screen size
+  // Adjust the items per slide dynamically
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setItemsPerSlide(3); // Desktop
-      } else if (window.innerWidth >= 768) {
-        setItemsPerSlide(2); // Tablet
-      } else {
-        setItemsPerSlide(1); // Mobile
-      }
+      if (window.innerWidth >= 1024) setItemsPerSlide(3);
+      else if (window.innerWidth >= 768) setItemsPerSlide(2);
+      else setItemsPerSlide(1);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Infinite carousel logic
+  const nextTestimonial = () => {
+    setCurrentIndex((prevIndex) =>
+      (prevIndex + 1) % Math.ceil(testimonials.length / itemsPerSlide)
+    );
+  };
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prevIndex) =>
+      (prevIndex - 1 + Math.ceil(testimonials.length / itemsPerSlide)) %
+      Math.ceil(testimonials.length / itemsPerSlide)
+    );
+  };
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (!isPlaying) return;
+    const interval = setInterval(nextTestimonial, 5000);
+    return () => clearInterval(interval);
+  }, [isPlaying, itemsPerSlide]);
 
   return (
     <section
@@ -104,6 +97,36 @@ const testimonials = [
       </div>
 
       {/* Navigation Controls */}
+      <div className="flex justify-between items-center mt-6 mx-auto max-w-xl">
+        <button
+          onClick={prevTestimonial}
+          className="bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors"
+        >
+          <ChevronLeft size={24} className="text-white" />
+        </button>
+
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors"
+          >
+            {isPlaying ? (
+              <Pause size={24} className="text-white" />
+            ) : (
+              <Play size={24} className="text-white" />
+            )}
+          </button>
+        </div>
+
+        <button
+          onClick={nextTestimonial}
+          className="bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors"
+        >
+          <ChevronRight size={24} className="text-white" />
+        </button>
+      </div>
+
+      {/* Dots for navigation */}
       <div className="flex justify-center mt-6 space-x-4">
         {Array.from(
           { length: Math.ceil(testimonials.length / itemsPerSlide) },
