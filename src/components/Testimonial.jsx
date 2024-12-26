@@ -11,6 +11,7 @@ const testimonials = [
   { name: "David Davis", message: "They were very helpful and the service was perfect." },
 ];
 
+/*************  ✨ Codeium Command 🌟  *************/
 const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -43,14 +44,21 @@ const Testimonial = () => {
       </div>
 
       {/* Testimonials */}
-      <div className="relative z-10 container mx-auto flex overflow-hidden">
-        <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+      <div className="relative z-10 container mx-auto overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+          }}
+        >
+          {/* Loop through testimonials and display 3 per slide */}
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
               className="min-w-full px-6 mb-8 flex-shrink-0 bg-gradient-to-r from-gray-800 to-gray-900 p-8 rounded-3xl shadow-lg transform hover:scale-105 hover:rotate-1 hover:shadow-2xl transition-transform duration-500 group"
             >
               <div className="flex justify-center mb-6">
+
                 <div className="p-4 bg-gradient-to-tr from-teal-500 via-purple-500 to-blue-500 rounded-full">
                   <MessageCircle className="text-white" size={32} />
                 </div>
