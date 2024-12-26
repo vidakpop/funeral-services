@@ -16,7 +16,7 @@ const Testimonial = () => {
   const [itemsPerSlide, setItemsPerSlide] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // Adjust the items per slide dynamically
+  // Adjust the number of items per slide based on screen size
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) setItemsPerSlide(3);
@@ -29,13 +29,14 @@ const Testimonial = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Infinite carousel logic
+  // Move to the next testimonial
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) =>
       (prevIndex + 1) % Math.ceil(testimonials.length / itemsPerSlide)
     );
   };
 
+  // Move to the previous testimonial
   const prevTestimonial = () => {
     setCurrentIndex((prevIndex) =>
       (prevIndex - 1 + Math.ceil(testimonials.length / itemsPerSlide)) %
@@ -46,7 +47,7 @@ const Testimonial = () => {
   // Autoplay functionality
   useEffect(() => {
     if (!isPlaying) return;
-    const interval = setInterval(nextTestimonial, 5000);
+    const interval = setInterval(nextTestimonial, 6000); // 6-second delay for readability
     return () => clearInterval(interval);
   }, [isPlaying, itemsPerSlide]);
 
@@ -69,7 +70,7 @@ const Testimonial = () => {
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
+            transform: `translateX(-${currentIndex * (100 / itemsPerSlide)}%)`,
             width: `${(100 * testimonials.length) / itemsPerSlide}%`,
           }}
         >
