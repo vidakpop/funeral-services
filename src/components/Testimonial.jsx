@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { MessageCircle, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 
 const testimonials = [
   { name: "Mwangi Wafula", message: "They made everything so easy during our hard time." },
@@ -11,31 +11,52 @@ const testimonials = [
   { name: "Otieno Okello", message: "They were very helpful and the service was perfect." },
 ];
 
-const TestimonialCarousel = () => {
+const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  };
+  // Adjust items per slide and fixed height for responsiveness
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setItemsPerSlide(3);
+      else if (window.innerWidth >= 768) setItemsPerSlide(2);
+      else setItemsPerSlide(1);
+    };
 
-  const prevTestimonial = () => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Move to the next testimonial
+  const nextTestimonial = () => {
     setCurrentIndex((prevIndex) =>
-      (prevIndex - 1 + testimonials.length) % testimonials.length
+      (prevIndex + 1) % Math.ceil(testimonials.length / itemsPerSlide)
     );
   };
 
+  // Move to the previous testimonial
+  const prevTestimonial = () => {
+    setCurrentIndex((prevIndex) =>
+      (prevIndex - 1 + Math.ceil(testimonials.length / itemsPerSlide)) %
+      Math.ceil(testimonials.length / itemsPerSlide)
+    );
+  };
+
+  // Autoplay functionality
   useEffect(() => {
     if (!isPlaying) return;
-    const interval = setInterval(nextTestimonial, 4000);
+    const interval = setInterval(nextTestimonial, 6000); // 6-second delay for readability
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, [isPlaying, itemsPerSlide]);
 
   return (
     <section
       id="testimonials"
       className="py-16 bg-gradient-to-br from-blue-900 via-purple-900 to-black relative overflow-hidden text-white"
     >
+      {/* Section Title */}
       <div className="relative z-10 text-center mb-10">
         <h2 className="text-4xl font-bold uppercase tracking-wider">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-pink-500 to-purple-500">
@@ -44,74 +65,93 @@ const TestimonialCarousel = () => {
         </h2>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 flex justify-center items-center">
+      {/* Carousel Container */}
+      <div className="relative z-10 container mx-auto px-4 overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(-${currentIndex * (100 / itemsPerSlide)}%)`,
+            width: `${(100 * testimonials.length) / itemsPerSlide}%`,
+          }}
+        >
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className={`flex-shrink-0 px-4 w-[calc(100%/${itemsPerSlide})]`}
+            >
+              <div
+                className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-500 flex flex-col justify-between"
+                style={{ height: "300px", minHeight: "300px" }}
+              >
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 bg-gradient-to-tr from-teal-500 via-purple-500 to-blue-500 rounded-full">
+                    <MessageCircle className="text-white" size={32} />
+                  </div>
+                </div>
+                <p
+                  className="text-gray-300 italic text-center mb-4 overflow-hidden text-ellipsis"
+                  style={{ maxHeight: "120px" }}
+                >
+                  "{testimonial.message}"
+                </p>
+                <h4 className="text-teal-400 font-bold text-center">
+                  - {testimonial.name}
+                </h4>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Controls */}
+      <div className="flex justify-between items-center mt-6 mx-auto max-w-xl">
         <button
           onClick={prevTestimonial}
-          className="absolute left-0 bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors z-20"
+          className="bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors"
         >
           <ChevronLeft size={24} className="text-white" />
         </button>
 
-        <div className="flex overflow-hidden relative w-full max-w-4xl">
-          {testimonials.map((testimonial, index) => {
-            const position = (index - currentIndex + testimonials.length) % testimonials.length;
-
-            // Apply different styles for center, left, and right containers
-            const isCenter = position === 0;
-            const isLeft = position === testimonials.length - 1;
-            const isRight = position === 1;
-
-            const containerStyle = isCenter
-              ? "scale-110 z-10 opacity-100"
-              : "scale-90 z-0 opacity-50";
-
-            return (
-              <div
-                key={index}
-                className={`absolute transition-transform duration-500 ease-in-out transform ${containerStyle}`}
-                style={{
-                  left: `${position * 33.33 - 33.33}%`,
-                  width: "33.33%",
-                  transformOrigin: "center",
-                }}
-              >
-                <div
-                  className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg flex flex-col justify-between h-[300px]"
-                >
-                  <p className="text-gray-300 italic text-center mb-4 overflow-hidden">
-                    "{testimonial.message}"
-                  </p>
-                  <h4 className="text-teal-400 font-bold text-center">
-                    - {testimonial.name}
-                  </h4>
-                </div>
-              </div>
-            );
-          })}
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors"
+          >
+            {isPlaying ? (
+              <Pause size={24} className="text-white" />
+            ) : (
+              <Play size={24} className="text-white" />
+            )}
+          </button>
         </div>
 
         <button
           onClick={nextTestimonial}
-          className="absolute right-0 bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors z-20"
+          className="bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors"
         >
           <ChevronRight size={24} className="text-white" />
         </button>
       </div>
 
+      {/* Dots for navigation */}
       <div className="flex justify-center mt-6 space-x-4">
-        <button
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors"
-        >
-          {isPlaying ? (
-            <Pause size={24} className="text-white" />
-          ) : (
-            <Play size={24} className="text-white" />
-          )}
-        </button>
+        {Array.from(
+          { length: Math.ceil(testimonials.length / itemsPerSlide) },
+          (_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full ${
+                currentIndex === index
+                  ? "bg-teal-500"
+                  : "bg-gray-500 hover:bg-teal-500 transition-colors"
+              }`}
+            ></button>
+          )
+        )}
       </div>
     </section>
   );
 };
 
-export default TestimonialCarousel;
+export default Testimonial;
