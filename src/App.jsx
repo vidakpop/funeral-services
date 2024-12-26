@@ -5,7 +5,7 @@ import FeatureSection from './components/FeatureSection'
 import Pricing from './components/Pricing'
 import Testimonial from './components/Testimonial'
 import Workflow from './components/Workflow'
-import EncouragementPopup from './components/EncouragementPopup'
+
 import Location from './components/Location'
 import Footer from './components/Footer'
 
@@ -18,7 +18,6 @@ function App () {
       <Pricing/>
       <Workflow />
       <Testimonial/>
-     /* <EncouragementPopup/>*/
       <Location />
       <Footer />
     </div>
