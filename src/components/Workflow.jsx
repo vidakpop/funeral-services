@@ -57,7 +57,7 @@ const Workflow = () => {
           <div className="flex space-x-4">
             {/* WhatsApp Button */}
             <a
-              href="https://wa.me/254712345678"
+              href="https://wa.me/254729489524"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-green-500 text-white rounded-full shadow-md hover:bg-green-600 transition-all duration-300"
@@ -67,7 +67,7 @@ const Workflow = () => {
 
             {/* Phone Call Button */}
             <a
-              href="tel:+254712345678"
+              href="tel:+254797277111"
               className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-all duration-300"
             >
               Call to Book
