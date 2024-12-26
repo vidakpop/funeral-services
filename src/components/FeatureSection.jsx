@@ -12,7 +12,7 @@ const FeatureSection = () => {
   return (
     <section
       id='services'
-      className='py-16 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white relative overflow-hidden'
+      className='py-16 bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white relative overflow-hidden'
     >
       {/* Background animations */}
       <div className='absolute top-0 left-0 w-full h-full pointer-events-none'>
