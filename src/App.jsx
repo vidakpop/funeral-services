@@ -18,7 +18,7 @@ function App () {
       <Pricing/>
       <Workflow />
       <Testimonial/>
-      <EncouragementPopup/>
+     /* <EncouragementPopup/>*/
       <Location />
       <Footer />
     </div>
