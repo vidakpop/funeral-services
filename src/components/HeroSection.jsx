@@ -17,7 +17,8 @@ const HeroSection = () => {
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 hover:text-yellow-300'> Difficult Times</span>
            </h1>
            <p className='text-lg md:text-xl mb-6'>Premium services are here to ease the burden during your time of need.</p>
-           <button className='bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition'>Book Our Services</button>
+           <button className='bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition'  onClick={() => document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })}
+           >Book Our Services</button>
         </div>     
     </div>
   )
