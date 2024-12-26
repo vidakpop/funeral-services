@@ -1,11 +1,11 @@
 import React from 'react';
 
 const pricing = [
-  { service: "Transport", contact: "+254712345678" },
-  { service: "Casket", contact: "+254712345678" },
-  { service: "Lowering Gear", contact: "+254712345678" },
-  { service: "Gazebo", contact: "+254712345678" },
-  { service: "Red/Green Carpet", contact: "+254712345678" },
+  { service: "Transport", contact: "+254729489524" },
+  { service: "Casket", contact: "+254729489524" },
+  { service: "Lowering Gear", contact: "+254729489524" },
+  { service: "Gazebo", contact: "+254729489524" },
+  { service: "Red/Green Carpet", contact: "+254729489524" },
 ];
 
 const Pricing = () => {
