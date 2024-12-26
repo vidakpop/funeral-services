@@ -15,7 +15,7 @@ const getRandomMessage = () => {
   return comfortingMessages[Math.floor(Math.random() * comfortingMessages.length)];
 };
 
-const ComfortPopup = () => {
+const EncouragementPopup = () => {
   const [message, setMessage] = useState(getRandomMessage());
   const [showPopup, setShowPopup] = useState(true);
 
@@ -175,4 +175,4 @@ const ComfortPopup = () => {
   );
 };
 
-export default ComfortPopup;
+export default EncouragementPopup;
