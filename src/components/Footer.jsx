@@ -15,7 +15,7 @@ const Footer = () => {
         {/* Branding */}
         <div>
           <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-700">
-            ComfortCare Services
+            Dove Funeral Services
           </h1>
           <p className="mt-2 text-lg text-gray-400">
             &copy; 2024. All rights reserved. Based in Mumias, Kenya. Services offered nationwide.
