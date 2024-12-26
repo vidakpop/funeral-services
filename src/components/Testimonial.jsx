@@ -16,7 +16,7 @@ const Testimonial = () => {
   const [itemsPerSlide, setItemsPerSlide] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // Adjust the number of items per slide based on screen size
+  // Adjust items per slide and fixed height for responsiveness
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) setItemsPerSlide(3);
@@ -79,13 +79,19 @@ const Testimonial = () => {
               key={index}
               className={`flex-shrink-0 px-4 w-[calc(100%/${itemsPerSlide})]`}
             >
-              <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-500">
+              <div
+                className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-500 flex flex-col justify-between"
+                style={{ height: "300px", minHeight: "300px" }}
+              >
                 <div className="flex justify-center mb-4">
                   <div className="p-3 bg-gradient-to-tr from-teal-500 via-purple-500 to-blue-500 rounded-full">
                     <MessageCircle className="text-white" size={32} />
                   </div>
                 </div>
-                <p className="text-gray-300 italic text-center mb-4">
+                <p
+                  className="text-gray-300 italic text-center mb-4 overflow-hidden text-ellipsis"
+                  style={{ maxHeight: "120px" }}
+                >
                   "{testimonial.message}"
                 </p>
                 <h4 className="text-teal-400 font-bold text-center">
