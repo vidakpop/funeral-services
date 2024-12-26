@@ -15,7 +15,7 @@ const getRandomMessage = () => {
   return comfortingMessages[Math.floor(Math.random() * comfortingMessages.length)];
 };
 
-const EncouragementPopup = () => {
+const ComfortPopup = () => {
   const [message, setMessage] = useState(getRandomMessage());
   const [showPopup, setShowPopup] = useState(true);
 
@@ -38,12 +38,12 @@ const EncouragementPopup = () => {
                 <i className="popup-icon">💫</i>
                 <i className="popup-icon">🌿</i>
               </div>
-              <video className="popup-video" autoPlay loop muted>
-                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
-              </video>
             </div>
             <button className="popup-close" onClick={() => setShowPopup(false)}>Close</button>
           </div>
+          <video className="popup-video" autoPlay loop muted>
+            <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
+          </video>
         </div>
       )}
 
@@ -54,7 +54,6 @@ const EncouragementPopup = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0.6);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -62,8 +61,19 @@ const EncouragementPopup = () => {
           animation: fadeIn 1s ease-out;
         }
 
+        .popup-video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.5;
+          z-index: -1;
+        }
+
         .popup-content {
-          background: linear-gradient(135deg, #6a11cb, #2575fc);
+          background: rgba(0, 0, 0, 0.6); /* Dark background to make text stand out */
           padding: 2rem;
           border-radius: 15px;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -103,17 +113,6 @@ const EncouragementPopup = () => {
 
         .popup-icon {
           margin: 0 0.5rem;
-        }
-
-        .popup-video {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          opacity: 0.1;
-          z-index: -1;
         }
 
         .popup-close {
@@ -176,4 +175,4 @@ const EncouragementPopup = () => {
   );
 };
 
-export default EncouragementPopup
+export default ComfortPopup;
