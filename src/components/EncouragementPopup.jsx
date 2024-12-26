@@ -41,9 +41,11 @@ const EncouragementPopup = () => {
             </div>
             <button className="popup-close" onClick={() => setShowPopup(false)}>Close</button>
           </div>
-          <video className="popup-video" autoPlay loop muted>
-            <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
-          </video>
+          <div className="popup-video-container">
+            <video className="popup-video" autoPlay loop muted>
+              <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       )}
 
@@ -59,6 +61,17 @@ const EncouragementPopup = () => {
           align-items: center;
           z-index: 9999;
           animation: fadeIn 1s ease-out;
+        }
+
+        .popup-video-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         .popup-video {
