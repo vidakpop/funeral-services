@@ -1,11 +1,11 @@
 import React from 'react';
 
 const pricing = [
-  { service: "Transport", contact: "+254729489524" },
-  { service: "Casket", contact: "+254729489524" },
-  { service: "Lowering Gear", contact: "+254729489524" },
-  { service: "Gazebo", contact: "+254729489524" },
-  { service: "Red/Green Carpet", contact: "+254729489524" },
+  { service: "Transport", contact: "+254729489524",phone: "+254797277111" },
+  { service: "Casket", contact: "+254729489524",phone: "+254797277111"},
+  { service: "Lowering Gear", contact: "+254729489524",phone: "+254797277111"},
+  { service: "Gazebo", contact: "+254729489524",phone: "+254797277111" },
+  { service: "Red/Green Carpet", contact: "+254729489524",phone: "+254797277111" },
 ];
 
 const Pricing = () => {
@@ -64,7 +64,7 @@ const Pricing = () => {
 
                   {/* Call Button */}
                   <a
-                    href={`tel:${item.contact}`}
+                    href={`tel:${item.phone}`}
                     className='flex items-center px-4 py-2 bg-blue-500 bg-opacity-80 rounded-full shadow-md text-white font-semibold text-sm hover:bg-blue-600 transform transition-all duration-300'
                   >
                     <img
