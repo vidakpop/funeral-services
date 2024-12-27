@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import hearseImage1 from '../assets/images/hearse1.jpeg';
 import hearseImage2 from '../assets/images/hearse2.jpeg';
 import hearseImage3 from '../assets/images/hearse3.jpeg';
@@ -37,7 +37,22 @@ const features = [
 ];
 
 const FeatureSection = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0); // Track the current image
+  const [currentFeatureIndex, setCurrentFeatureIndex] = useState(null); // Track the current feature in focus
+
+  useEffect(() => {
+    if (currentFeatureIndex !== null) {
+      const featureImages = features[currentFeatureIndex].images;
+
+      if (featureImages) {
+        const interval = setInterval(() => {
+          setActiveIndex((prevIndex) => (prevIndex + 1) % featureImages.length);
+        }, 3000); // Auto-slide every 3 seconds
+
+        return () => clearInterval(interval); // Cleanup interval on component unmount
+      }
+    }
+  }, [currentFeatureIndex]); // Run effect when currentFeatureIndex changes
 
   return (
     <section
@@ -60,8 +75,13 @@ const FeatureSection = () => {
             <div
               key={index}
               className="relative bg-gray-800 p-6 shadow-lg rounded-lg overflow-hidden transform transition-all duration-700 group"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              onMouseEnter={() => {
+                setCurrentFeatureIndex(index);
+                setActiveIndex(0);
+              }}
+              onMouseLeave={() => {
+                setCurrentFeatureIndex(null);
+              }}
             >
               {/* Glowing border */}
               <div className="absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-blue-500 transition-all duration-500"></div>
@@ -69,27 +89,11 @@ const FeatureSection = () => {
               {/* Image Carousel */}
               {feature.images ? (
                 <div className="relative h-48 overflow-hidden rounded-lg">
-                  <div
-                    className="flex transition-transform duration-700"
-                    style={{
-                      transform: `translateX(${
-                        hoveredIndex === index ? "-50%" : "0"
-                      })`,
-                    }}
-                  >
-                    {feature.images.map((img, i) => (
-                      <img
-                        key={i}
-                        src={img}
-                        alt={`${feature.title} ${i + 1}`}
-                        className={`w-full h-48 object-cover rounded-lg transition-all duration-500 ${
-                          hoveredIndex === index && i === 1
-                            ? "scale-105"
-                            : "scale-100"
-                        }`}
-                      />
-                    ))}
-                  </div>
+                  <img
+                    src={feature.images[activeIndex]}
+                    alt={`${feature.title} ${activeIndex + 1}`}
+                    className="w-full h-48 object-cover rounded-lg transition-all duration-500"
+                  />
                 </div>
               ) : (
                 <img
