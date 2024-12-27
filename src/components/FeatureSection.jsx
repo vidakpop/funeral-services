@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import hearseImage1 from '../assets/images/hearse1.jpeg';
+import hearseImage1 from '../assets/images/hearse.jpeg';
 import hearseImage2 from '../assets/images/hearse2.jpeg';
 import hearseImage3 from '../assets/images/hearse3.jpeg';
 import casketImage from '../assets/images/casket.jpeg';
