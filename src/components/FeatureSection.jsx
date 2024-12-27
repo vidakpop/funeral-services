@@ -1,16 +1,22 @@
 import React from 'react';
-
-import hearseImage from '../assets/images/hearse.jpeg';
+import hearseImage1 from '../assets/images/hearse1.jpeg';
+import hearseImage2 from '../assets/images/hearse2.jpeg';
+import hearseImage3 from '../assets/images/hearse3.jpeg';
 import casketImage from '../assets/images/casket.jpeg';
 import loweringGearImage from '../assets/images/lowering_gear.jpeg';
 import gazeboImage from '../assets/images/gazebo.jpeg';
 import carpetImage from '../assets/images/carpet.jpeg';
+import gazeboimage2 from '../assets/images/gazebo2.jpeg';
 
 const features = [
-  { title: "Hearse", image: hearseImage, description: "We provide reliable and respectful transport services for the deceased." },
+  {
+    title: "Hearse",
+    images: [hearseImage1, hearseImage2, hearseImage3],
+    description: "We provide reliable and respectful transport services for the deceased.",
+  },
   { title: "Casket", image: casketImage, description: "Choose from a variety of high-quality caskets to honor your loved one." },
   { title: "Lowering Gear", image: loweringGearImage, description: "Our lowering gear ensures a dignified and smooth burial process." },
-  { title: "Gazebo", image: gazeboImage, description: "We offer gazebo setups for outdoor services and gatherings." },
+  { title: "Gazebo", images:[gazeboImage,gazeboimage2], description: "We offer gazebo setups for outdoor services and gatherings." },
   { title: "Red/Green Carpet", image: carpetImage, description: "Red and green carpets are available to enhance the service setting." },
 ];
 
@@ -20,6 +26,24 @@ const FeatureSection = () => {
       id='services'
       className='py-16 bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white relative overflow-hidden'
     >
+      <style>
+        {`
+          .carousel {
+            display: flex;
+            gap: 1rem;
+          }
+
+          .carousel img {
+            flex-shrink: 0;
+            transition: transform 0.5s ease-in-out;
+          }
+
+          .group:hover .carousel img {
+            transform: translateX(-100%);
+          }
+        `}
+      </style>
+
       {/* Background animations */}
       <div className='absolute top-0 left-0 w-full h-full pointer-events-none'>
         <div className='absolute bg-purple-700 opacity-20 w-72 h-72 rounded-full blur-3xl top-10 left-10 animate-pulse'></div>
@@ -42,12 +66,27 @@ const FeatureSection = () => {
               {/* Glowing border */}
               <div className='absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-blue-500 transition-all duration-500'></div>
 
-              {/* Image */}
-              <img
-                src={feature.image}
-                alt={feature.title}
-                className='w-full h-48 object-cover mb-4 rounded-lg transform group-hover:rotate-1 group-hover:scale-110 transition-all duration-500'
-              />
+              {/* Image/Carousel */}
+              {feature.images ? (
+                <div className='relative h-48 overflow-hidden rounded-lg'>
+                  <div className='carousel flex transition-transform duration-500 group-hover:translate-x-[-100%]'>
+                    {feature.images.map((img, i) => (
+                      <img
+                        key={i}
+                        src={img}
+                        alt={`${feature.title} ${i + 1}`}
+                        className='w-full h-48 object-cover rounded-lg'
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className='w-full h-48 object-cover mb-4 rounded-lg transform group-hover:rotate-1 group-hover:scale-110 transition-all duration-500'
+                />
+              )}
 
               {/* Title and Description */}
               <h3 className='text-xl font-semibold mb-2 text-white group-hover:text-blue-400 transition-all duration-500'>
