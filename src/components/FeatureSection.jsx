@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import hearseImage1 from '../assets/images/hearse1.jpeg';
 import hearseImage2 from '../assets/images/hearse2.jpeg';
 import hearseImage3 from '../assets/images/hearse3.jpeg';
@@ -6,7 +6,7 @@ import casketImage from '../assets/images/casket.jpeg';
 import loweringGearImage from '../assets/images/lowering_gear.jpeg';
 import gazeboImage from '../assets/images/gazebo.jpeg';
 import carpetImage from '../assets/images/carpet.jpeg';
-import gazeboimage2 from '../assets/images/gazebo2.jpeg';
+import gazeboImage2 from '../assets/images/gazebo2.jpeg';
 
 const features = [
   {
@@ -14,68 +14,79 @@ const features = [
     images: [hearseImage1, hearseImage2, hearseImage3],
     description: "We provide reliable and respectful transport services for the deceased.",
   },
-  { title: "Casket", image: casketImage, description: "Choose from a variety of high-quality caskets to honor your loved one." },
-  { title: "Lowering Gear", image: loweringGearImage, description: "Our lowering gear ensures a dignified and smooth burial process." },
-  { title: "Gazebo", images:[gazeboImage,gazeboimage2], description: "We offer gazebo setups for outdoor services and gatherings." },
-  { title: "Red/Green Carpet", image: carpetImage, description: "Red and green carpets are available to enhance the service setting." },
+  {
+    title: "Casket",
+    image: casketImage,
+    description: "Choose from a variety of high-quality caskets to honor your loved one.",
+  },
+  {
+    title: "Lowering Gear",
+    image: loweringGearImage,
+    description: "Our lowering gear ensures a dignified and smooth burial process.",
+  },
+  {
+    title: "Gazebo",
+    images: [gazeboImage, gazeboImage2],
+    description: "We offer gazebo setups for outdoor services and gatherings.",
+  },
+  {
+    title: "Red/Green Carpet",
+    image: carpetImage,
+    description: "Red and green carpets are available to enhance the service setting.",
+  },
 ];
 
 const FeatureSection = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <section
-      id='services'
-      className='py-16 bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white relative overflow-hidden'
+      id="services"
+      className="py-16 bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white relative overflow-hidden"
     >
-      <style>
-        {`
-          .carousel {
-            display: flex;
-            gap: 1rem;
-          }
-
-          .carousel img {
-            flex-shrink: 0;
-            transition: transform 0.5s ease-in-out;
-          }
-
-          .group:hover .carousel img {
-            transform: translateX(-100%);
-          }
-        `}
-      </style>
-
-      {/* Background animations */}
-      <div className='absolute top-0 left-0 w-full h-full pointer-events-none'>
-        <div className='absolute bg-purple-700 opacity-20 w-72 h-72 rounded-full blur-3xl top-10 left-10 animate-pulse'></div>
-        <div className='absolute bg-blue-600 opacity-20 w-96 h-96 rounded-full blur-3xl bottom-20 right-20 animate-pulse'></div>
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <div className="absolute bg-purple-700 opacity-20 w-72 h-72 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
+        <div className="absolute bg-blue-600 opacity-20 w-96 h-96 rounded-full blur-3xl bottom-20 right-20 animate-pulse"></div>
       </div>
 
-      {/* Section Content */}
-      <div className='relative z-10'>
-        <h2 className='text-center text-4xl md:text-5xl font-bold mb-12 uppercase tracking-widest'>
-          <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500'>
+      <div className="relative z-10">
+        <h2 className="text-center text-4xl md:text-5xl font-bold mb-12 uppercase tracking-widest">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
             Our Services
           </span>
         </h2>
-        <div className='container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6'>
+        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
           {features.map((feature, index) => (
             <div
               key={index}
-              className='relative bg-gray-800 p-6 shadow-lg rounded-lg overflow-hidden hover:scale-105 transform transition-all duration-700 group'
+              className="relative bg-gray-800 p-6 shadow-lg rounded-lg overflow-hidden transform transition-all duration-700 group"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               {/* Glowing border */}
-              <div className='absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-blue-500 transition-all duration-500'></div>
+              <div className="absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-blue-500 transition-all duration-500"></div>
 
-              {/* Image/Carousel */}
+              {/* Image Carousel */}
               {feature.images ? (
-                <div className='relative h-48 overflow-hidden rounded-lg'>
-                  <div className='carousel flex transition-transform duration-500 group-hover:translate-x-[-100%]'>
+                <div className="relative h-48 overflow-hidden rounded-lg">
+                  <div
+                    className="flex transition-transform duration-700"
+                    style={{
+                      transform: `translateX(${
+                        hoveredIndex === index ? "-50%" : "0"
+                      })`,
+                    }}
+                  >
                     {feature.images.map((img, i) => (
                       <img
                         key={i}
                         src={img}
                         alt={`${feature.title} ${i + 1}`}
-                        className='w-full h-48 object-cover rounded-lg'
+                        className={`w-full h-48 object-cover rounded-lg transition-all duration-500 ${
+                          hoveredIndex === index && i === 1
+                            ? "scale-105"
+                            : "scale-100"
+                        }`}
                       />
                     ))}
                   </div>
@@ -84,15 +95,15 @@ const FeatureSection = () => {
                 <img
                   src={feature.image}
                   alt={feature.title}
-                  className='w-full h-48 object-cover mb-4 rounded-lg transform group-hover:rotate-1 group-hover:scale-110 transition-all duration-500'
+                  className="w-full h-48 object-cover mb-4 rounded-lg transform group-hover:rotate-1 group-hover:scale-110 transition-all duration-500"
                 />
               )}
 
               {/* Title and Description */}
-              <h3 className='text-xl font-semibold mb-2 text-white group-hover:text-blue-400 transition-all duration-500'>
+              <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-blue-400 transition-all duration-500">
                 {feature.title}
               </h3>
-              <p className='text-gray-400 group-hover:text-gray-300 transition-all duration-500'>
+              <p className="text-gray-400 group-hover:text-gray-300 transition-all duration-500">
                 {feature.description}
               </p>
             </div>
