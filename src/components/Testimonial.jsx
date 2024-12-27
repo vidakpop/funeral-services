@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MessageCircle, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 
 const testimonials = [
   { name: "Mwangi Wafula", message: "They made everything so easy during our hard time." },
@@ -15,29 +15,29 @@ const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // Move to the next testimonial
+  // Automatically slide between testimonials
+  useEffect(() => {
+    if (!isPlaying) return;
+    const interval = setInterval(() => {
+      nextTestimonial();
+    }, 5000); // Auto-slide every 5 seconds
+    return () => clearInterval(interval);
+  }, [isPlaying, currentIndex]);
+
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
   };
 
-  // Move to the previous testimonial
   const prevTestimonial = () => {
     setCurrentIndex((prevIndex) =>
-      (prevIndex - 1 + testimonials.length) % testimonials.length
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
   };
-
-  // Autoplay functionality
-  useEffect(() => {
-    if (!isPlaying) return;
-    const interval = setInterval(nextTestimonial, 6000); // 6-second delay for readability
-    return () => clearInterval(interval);
-  }, [isPlaying]);
 
   return (
     <section
       id="testimonials"
-      className="py-16 bg-gradient-to-br from-blue-900 via-purple-900 to-black relative overflow-hidden text-white"
+      className="py-16 bg-gradient-to-br from-blue-900 via-purple-900 to-black text-white relative overflow-hidden"
     >
       {/* Section Title */}
       <div className="text-center mb-10">
@@ -48,43 +48,18 @@ const Testimonial = () => {
         </h2>
       </div>
 
-      {/* Carousel Container */}
-      <div className="relative container mx-auto px-4 overflow-hidden">
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
-            width: `${100 * testimonials.length}%`,
-          }}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-full px-4"
-            >
-              <div
-                className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-500 flex flex-col justify-between"
-                style={{ height: "300px" }}
-              >
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-gradient-to-tr from-teal-500 via-purple-500 to-blue-500 rounded-full">
-                    <MessageCircle className="text-white" size={32} />
-                  </div>
-                </div>
-                <p className="text-gray-300 italic text-center mb-4">
-                  "{testimonial.message}"
-                </p>
-                <h4 className="text-teal-400 font-bold text-center">
-                  - {testimonial.name}
-                </h4>
-              </div>
-            </div>
-          ))}
+      {/* Testimonial Card */}
+      <div className="relative flex justify-center items-center h-72">
+        <div className="absolute inset-0 flex justify-center items-center transition-all duration-500 ease-in-out">
+          <div className="w-[90%] max-w-lg bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-500 text-center">
+            <p className="text-gray-300 italic mb-4">"{testimonials[currentIndex].message}"</p>
+            <h4 className="text-teal-400 font-bold">- {testimonials[currentIndex].name}</h4>
+          </div>
         </div>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex justify-between items-center mt-6 mx-auto max-w-xl">
+      {/* Controls */}
+      <div className="flex justify-center items-center mt-6 space-x-6">
         <button
           onClick={prevTestimonial}
           className="bg-gray-800 p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors"
