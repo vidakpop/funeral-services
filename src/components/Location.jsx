@@ -34,7 +34,7 @@ const Location = () => {
         <div className="relative shadow-2xl hover:scale-105 transition-transform duration-500">
           <iframe
             className="rounded-lg border-4 border-teal-400 shadow-lg"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63921.01923335862!2d34.47795017694384!3d-0.3447219363748809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17810f91db2e4433%3A0x222d3656a2dc4e7d!2sMumias%2C%20Kenya!5e0!3m2!1sen!2sus!4v1695000000000!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3532.593180956503!2d34.498813274964526!3d0.3296138996671516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMTknNDYuNiJOIDM0wrAzMCcwNS4wIkU!5e1!3m2!1sen!2ske!4v1735976770596!5m2!1sen!2ske"
             width="100%"
             height="400"
             allowFullScreen=""
