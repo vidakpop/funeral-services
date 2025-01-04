@@ -64,7 +64,7 @@ const Footer = () => {
               <FaGithub size={32} />
             </a>
             <a
-              href="https://linkedin.com/in/davisngetich"
+              href="https://www.linkedin.com/in/davis-ngetich-690b6521b/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-yellow-300 transition duration-300"
