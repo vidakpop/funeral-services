@@ -49,7 +49,7 @@ const Location = () => {
       {/* Call to Action */}
       <div className="relative z-10 text-center mt-8">
         <a
-          href="https://www.google.com/maps"
+          href="https://maps.app.goo.gl/Ryz7mEfWcKQr9KVM8"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block px-6 py-3 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 rounded-full text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
