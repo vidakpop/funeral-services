@@ -14,7 +14,7 @@ const Services = () => {
     },[])
   return (
     <section id='services' className='py-16 bg-gray-100'>
-      <h2>Our Services</h2>
+      <h2 className='text-center text-3xl font-bold text-gray-900 mb-10'>Our Services</h2>
 
     </section>
   )
