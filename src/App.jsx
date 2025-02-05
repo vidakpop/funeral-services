@@ -5,6 +5,7 @@ import FeatureSection from './components/FeatureSection'
 import Pricing from './components/Pricing'
 import Testimonial from './components/Testimonial'
 import Workflow from './components/Workflow'
+import Services from  './components/Services'
 
 import Location from './components/Location'
 import Footer from './components/Footer'
@@ -15,6 +16,7 @@ function App () {
       <Navbar />
       <HeroSection />
       <FeatureSection />
+      <Services/>
       <Pricing/>
       <Workflow />
       <Testimonial/>
