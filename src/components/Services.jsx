@@ -13,7 +13,10 @@ const Services = () => {
             })
     },[])
   return (
-    <div>Services</div>
+    <section id='services' className='py-16 bg-gray-100'>
+      <h2>Our Services</h2>
+
+    </section>
   )
 }
 
