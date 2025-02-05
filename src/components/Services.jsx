@@ -18,7 +18,7 @@ const Services = () => {
       <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4'>
          {Services.map(service =>
           <div key={product.id} className='bg-gray-50 p-4 rounded-lg shadow'>
-
+             <img src={'http://127.0.0.1:8000/media/${product.image}'} alt={product.name} className='w-full h-32 object-cover rounded'/>
           </div>
          )}
       </div>
