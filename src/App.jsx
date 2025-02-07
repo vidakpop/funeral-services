@@ -16,7 +16,7 @@ function App () {
       <Navbar />
       <HeroSection />
       <FeatureSection />
-      <Services/>
+     {/* <Services /> */}
       <Pricing/>
       <Workflow />
       <Testimonial/>
