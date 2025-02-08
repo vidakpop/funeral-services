@@ -47,7 +47,11 @@ const Services = () => {
         <div className="absolute bg-purple-700 opacity-20 w-72 h-72 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
         <div className="absolute bg-blue-600 opacity-20 w-96 h-96 rounded-full blur-3xl bottom-20 right-20 animate-pulse"></div>
       </div>
-      <h2 className="text-center text-3xl font-bold text-gray-900 mb-10">Our Services</h2>
+      <h2 className="text-center text-4xl md:text-5xl font-bold mb-12 uppercase tracking-widest">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+            Our Services
+          </span>
+        </h2>
 
       {loading ? (  
         <p className="text-center text-gray-500">Loading services...</p>
