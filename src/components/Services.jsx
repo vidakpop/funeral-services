@@ -59,7 +59,7 @@ const Services = () => {
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
           {services.length > 0 ? (
             services.map(service => (
-              <div key={service.id} className="bg-white p-6 shadow-lg rounded-lg">
+              <div key={service.id} className="relative bg-gray-800 p-6 shadow-lg rounded-lg overflow-hidden transform transition-all duration-700 group">
                 <h3 className="text-xl font-semibold text-gray-700 mb-4">{service.name}</h3>
 
                 {/* Check if service has products before mapping */}
