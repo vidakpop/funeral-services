@@ -42,10 +42,10 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="services" className="py-16 bg-gray-100">
+    <section id="services" className="py-16 bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white relative overflow-hidden">
       <h2 className="text-center text-3xl font-bold text-gray-900 mb-10">Our Services</h2>
 
-      {loading ? (
+      {loading ? (  
         <p className="text-center text-gray-500">Loading services...</p>
       ) : (
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
