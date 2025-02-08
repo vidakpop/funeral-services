@@ -60,6 +60,7 @@ const Services = () => {
           {services.length > 0 ? (
             services.map(service => (
               <div key={service.id} className="relative bg-gray-800 p-6 shadow-lg rounded-lg overflow-hidden transform transition-all duration-700 group">
+                 <div className="absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-blue-500 transition-all duration-500"></div>
                 <h3 className="text-xl font-semibold text-gray-700 mb-4">{service.name}</h3>
 
                 {/* Check if service has products before mapping */}
